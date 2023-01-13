@@ -7,32 +7,32 @@
 
 export function forgotPasswordMailer({ to, token }) {
   // In production, set APP_ORIGIN to your production server origin
-  const origin = process.env.APP_ORIGIN || process.env.BLITZ_DEV_SERVER_ORIGIN
-  const resetUrl = `${origin}/auth/reset-password?token=${token}`
+  const origin = process.env.APP_ORIGIN || process.env.BLITZ_DEV_SERVER_ORIGIN;
+  const resetUrl = `${origin}/auth/password/reset?token=${token}`;
   const msg = {
     from: "TODO@example.com",
     to,
-    subject: "Your Password Reset Instructions",
+    subject: "Instruções para redefinição da senha",
     html: `
-      <h1>Reset Your Password</h1>
-      <h3>NOTE: You must set up a production email integration in mailers/forgotPasswordMailer.ts</h3>
+      <h1>Recuperar sua senha</h1>
+      <h3>Clique no link abaixo para recuperar sua senha </h3>
 
       <a href="${resetUrl}">
-        Click here to set a new password
+        Recuperar minha senha
       </a>
     `,
-  }
+  };
   return {
     async send() {
       if (process.env.NODE_ENV === "production") {
         // TODO - send the production email, like this:
         // await postmark.sendEmail(msg)
-        throw new Error("No production email implementation in mailers/forgotPasswordMailer")
+        throw new Error("No production email implementation in mailers/forgotPasswordMailer");
       } else {
         // Preview email in the browser
-        const previewEmail = (await import("preview-email")).default
-        await previewEmail(msg)
+        const previewEmail = (await import("preview-email")).default;
+        await previewEmail(msg);
       }
     },
-  }
+  };
 }

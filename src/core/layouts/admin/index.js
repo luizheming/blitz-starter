@@ -1,15 +1,15 @@
-import Head from "next/head"
-import React from "react"
+import Head from "next/head";
+import React from "react";
 const Layout = ({ title, children }) => {
   return (
     <>
       <Head>
-        <title>{title || "icarus"}</title>
+        <title>{title || "starter"}</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       {children}
     </>
-  )
-}
-export default Layout
+  );
+};
+export default Layout;
